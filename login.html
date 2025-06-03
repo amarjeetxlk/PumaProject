@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Basic Reset and WhatsApp Theme Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #e5ddd5; color: #111; display: flex; justify-content: center; align-items: center; height: 100vh; }
+
+        /* Container Styling */
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .login-container h2 {
+            color: #075e54;
+            margin-bottom: 20px;
+        }
+
+        /* Input Field Styling */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            color: #075e54;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #25d366;
+            box-shadow: 0 0 5px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Captcha Checkbox */
+        .captcha {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .captcha input {
+            margin-right: 10px;
+        }
+        .captcha label {
+            color: #011dd5;
+        }
+
+        /* Login Button Styling */
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #9cb50f;
+            background-color: #073d62;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="school.html">
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <!-- Captcha Checkbox -->
+        <div class="captcha">
+            <input type="checkbox" id="captcha" required>
+            <label for="captcha">I'm not a robot</label>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+</div>
+
+</body>
+</html>

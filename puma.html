@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUMA Inspired</title>
+
+  <!-- Font Awesome CDN for social media icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+/* Overlay background for popup */
+.popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 5, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Popup container */
+    .popup-container {
+      position: relative;
+      
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(135, 231, 0, 0.3);
+      width: 650px;
+      text-align: center;
+    }
+
+    /* Popup image */
+    .popup-image {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    /* Close button */
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgb(12, 5, 5);
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .popup-close:hover {
+      background: #d00;
+    }
+
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      position: relative; /* To make the position of the buttons relative to body */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 3000px;
+      margin: 0 auto;
+    }
+
+     /* Header */
+     header {
+      background: #000;
+      padding: 10px 80px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+    }
+
+    header .logo-container img {
+      width: 50px;
+      height: auto;
+    }
+
+    header .logo-container h1 {
+      color: #fff;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    header nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 10px;
+      margin-right: 20px;
+    }
+
+    header nav ul li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    header nav ul li a:hover {
+      color: #f44336;
+      transform: scale(1.1);
+    }
+
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #333;
+      list-style: none;
+      padding: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-menu li {
+      margin: 0;
+    }
+
+    .dropdown-menu li a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dropdown-menu li a:hover {
+      background: #f44336;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(70%);
+    }
+
+    .hero-content {
+      z-index: 1;
+      text-align: center;
+      color: #ffffff;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .hero-content h2 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      animation: zoomIn 1.5s ease-in-out;
+    }
+
+    /* Traditions Section */
+    #traditions {
+      padding: 50px 0;
+      text-align: center;
+      background-image: url(download.jpg);
+      
+    }
+
+    #traditions h2 {
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    .tradition-box {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tradition-item {
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tradition-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .tradition-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .tradition-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .tradition-item h3 {
+      margin: 15px 0;
+      color: #1d1a1a;
+      font-size: 1.5rem;
+    }
+
+    /* Carousel Slider */
+    #carousel {
+      margin: 80px 0;
+      background-image: url(download.jpg);
+      padding: 40px 0;
+      overflow: hidden
+      
+    }
+
+    #carousel h2 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .slider {
+      display: flex;
+      animation: slide 20s linear infinite;
+    }
+
+    .slider img {
+      width: 200px;
+      height: auto;
+      margin: 0 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .slider img:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    
+        /* WhatsApp Logo */
+        .whatsapp_main {
+            position:fixed ;
+            bottom: 70px;
+            left: 2px;
+        }
+    
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: #080606;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 0; /* Increased padding for a larger footer */
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1.5rem; /* Increased font size */
+      letter-spacing: 1px; /* Added letter-spacing for better readability */
+      font-weight: bold;  /* Make text bolder */
+    }
+
+    footer p:hover {
+      color: #f44336; /* Change text color on hover */
+    }
+
+    .social-icons {
+      margin: 20px 0;
+    }
+
+    .social-icons a {
+      margin: 0 15px;
+      color: #fff;
+      font-size: 2rem;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #f44336;
+      transform: scale(1.2);
+    }
+
+    .contact-link {
+      display: block;
+      margin-top: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: #f44336;
+    }
+  
+
+.contact-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #080606;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.contact-right {
+  width: 50%;
+  padding: 50px;
+}
+
+.contact-right h3 {
+  margin-bottom: 10px;
+}
+
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+}
+
+#contact-form input, #contact-form textarea {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+justify-content: center;
+}
+
+#contact-form button[type="submit"] {
+  background-color: #f44336;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+#contact-form button[type="submit"]:hover {
+  background-color: #d00;
+  
+}
+
+    /* Google Map Section */
+    #google-map {
+      margin-top: 50px;
+      width: 100%;
+      height: 400px; /* Set height for the map */
+    }
+
+    /* Scroll buttons */
+    .scroll-btn {
+      position: fixed;
+      z-index: 100;
+      background-color: #0a0707;
+      color: white;
+      border: none;
+      border-radius: 40%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .scroll-btn-up {
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .scroll-btn-down {
+      top: 20px;
+      left: 20px;
+    }
+  </style>
+</head>
+<body>
+     <!-- Popup overlay -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-container">
+      <button class="popup-close" onclick="closePopup()">×</button>
+      <img src="poma.jpg" alt="Popup Image" class="popup-image">
+    </div>
+  </div>
+
+ <!-- Header -->
+ <header>
+  <div class="logo-container">
+    <img src="puma image.png" alt="PUMA Logo">
+         <h1>  PUMA Inspired </h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#traditions">Traditions</a></li>
+      <li><a href="#carousel">Product</a></li>
+      <li class="dropdown">
+        <a href="#">More <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="# accessories">Accessories   </a></li>
+          <li><a href="#sports">sports</a></li>
+          <li><a href="#clothing">clothing</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="index1.html">registration</a></li>
+      <li><a href="login2.html">login</a></li>
+      
+      
+
+    </ul>
+  </nav>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video autoplay loop muted class="background-video">
+      <source src="video.mp4">
+    </video>
+    <div class="hero-content">
+      <h2>Welcome to PUMA Inspired</h2>
+      <p>Innovating for the Future of Sports</p>
+    </div>
+  </section>
+
+  <!-- Traditions Section -->
+  <section id="traditions">
+    <h2>Our Traditions</h2>
+    <div class="tradition-box">
+      <div class="tradition-item">
+        <img src="performance.jpg" alt="Tradition 1">
+        <h3>Performance</h3>
+        <p>Crafting high-performance sportswear for athletes worldwide.</p>
+      </div>
+      <div class="tradition-item">
+        <img src="innovation.jpg" alt="Tradition 2">
+        <h3>Innovation</h3>
+        <p>Pioneering designs that redefine the sports industry.</p>
+      </div>
+      <div class="tradition-item">
+        <img src="sustanability.jpg" alt="Tradition 3">
+        <h3>Sustainability</h3>
+        <p>Creating eco-friendly solutions for a better future.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carousel Logo Slider -->
+  <section id="carousel" class="container">
+    <h2>Our Products</h2>
+    <div class="slider">
+      <img src="choose1.jpg" alt="Logo 1">
+      <img src="choose2.jpg" alt="Logo 2">
+      <img src="shoes 1.jpg" alt="Logo 3">
+      <img src="choose2.jpg" alt="Logo 4">
+      <img src="choose1.jpg" alt="Logo 5">
+      <img src="choose2.jpg" alt="Logo 6">
+      <img src="shoes.jpg" alt="Logo 7">
+      <img src="choose2.jpg" alt="Logo 8">
+      <img src="choose1.jpg" alt="Logo 8">
+      <img src="shoes 1.jpg" alt="Logo 10">
+      <img src="choose1.jpg" alt="Logo 1">
+      <img src="choose2.jpg" alt="Logo 2">
+      <img src="shoes.jpg" alt="Logo 3">
+      <img src="choose2.jpg" alt="Logo 4">
+      <img src="choose1.jpg" alt="Logo 5">
+      <img src="shoes 1.jpg" alt="Logo 6">
+      <img src="choose1.jpg" alt="Logo 7">
+      <img src="choose2.jpg" alt="Logo 8">
+      <img src="shoes.jpg" alt="Logo 8">
+      <img src="choose2.jpg" alt="Logo 10">
+      <img src="choose1.jpg" alt="Logo 1">
+      <img src="shoes 1.jpg" alt="Logo 2">
+      <img src="choose1.jpg" alt="Logo 3">
+      <img src="choose2.jpg" alt="Logo 4">
+      <img src="shoes.jpg" alt="Logo 5">
+      <img src="choose2.jpg" alt="Logo 6">
+      <img src="choose1.jpg" alt="Logo 7">
+      <img src="shoes 1.jpg" alt="Logo 8">
+      <img src="choose1.jpg" alt="Logo 8">
+      <img src="choose2.jpg" alt="Logo 10">
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 PUMA Inspired. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" class="fab fa-facebook"></a>
+      <a href="https://instagram.com" target="_blank" class="fab fa-instagram"></a>
+      <a href="https://twitter.com" target="_blank" class="fab fa-twitter"></a>
+    </div>
+    <a href="#contact" class="contact-link">Contact Us</a>
+    <!-- Contact Section -->
+  <section id="contact" class="container">
+    <h2>Get in Touch</h2>
+    
+    <a href="payment5.html" class="contact-link">payment option</a>
+    <div class="contact-box">
+      <div class="contact-right">
+        
+      </div>
+      <div class="contact-right">
+        <h3>Send Us a Message</h3>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+    <br><br>
+  </section>
+</footer>
+
+  <!-- Google Map Section -->
+  <div id="google-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12557.92587752971!2d-73.9855286!3d40.748817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af1ff32fbf%3A0x7f7a4f2177fc9530!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1602286322003!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <!-- Scroll Buttons -->
+  <button class="scroll-btn scroll-btn-up" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <button class="scroll-btn scroll-btn-down" onclick="scrollToBottom()">
+    <i class="fas fa-arrow-down"></i>
+  </button>
+
+ <!-- WhatsApp Logo -->
+ <div class="whatsapp_main">
+  <a href="https://wa.me/7905892369" target="_blank">
+      <img src="watsapp.jpg" width="8%" alt="WhatsApp Logo">
+  </a>
+</div>
+
+  <script>
+    // Close popup function
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbotBox');
+      chatbot.classList.toggle('active');
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+</script>
+  </script>
+</body>
+</html>
